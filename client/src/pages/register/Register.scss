@@ -1,0 +1,201 @@
+.registerModern {
+  display: flex;
+  justify-content: center;
+  padding: 60px 20px;
+  background-color: #f9f9f9;
+
+  form {
+    width: 100%;
+    max-width: 1000px;
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: 0 4px 25px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+
+    h1 {
+      font-size: 28px;
+      color: #222;
+      text-align: center;
+    }
+
+    .formGrid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+
+      .card {
+        flex: 1;
+        min-width: 300px;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        padding: 20px;
+        border: 1px solid #eee;
+        border-radius: 12px;
+        background-color: #fcfcfc;
+
+        h2 {
+          font-size: 18px;
+          font-weight: 600;
+          color: #333;
+        }
+
+        label {
+          font-weight: 500;
+          font-size: 14px;
+          color: #555;
+        }
+
+        input,
+        textarea {
+          padding: 12px 14px;
+          border: 1px solid #ccc;
+          border-radius: 6px;
+          font-size: 14px;
+          outline: none;
+
+          &::placeholder {
+            color: #aaa;
+          }
+        }
+
+        textarea {
+          resize: vertical;
+        }
+
+        .toggleSwitch {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 12px;
+          margin: 10px 0;
+
+          .switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 24px;
+
+            input {
+              opacity: 0;
+              width: 0;
+              height: 0;
+            }
+
+            .slider {
+              position: absolute;
+              cursor: pointer;
+              top: 0;
+              left: 0;
+              right: 0;
+              bottom: 0;
+              background-color: #ccc;
+              transition: 0.4s;
+              border-radius: 24px;
+
+              &:before {
+                content: "";
+                position: absolute;
+                height: 18px;
+                width: 18px;
+                left: 3px;
+                bottom: 3px;
+                background-color: white;
+                transition: 0.4s;
+                border-radius: 50%;
+              }
+            }
+
+            input:checked+.slider {
+              background-color: #46a91f;
+            }
+
+            input:checked+.slider:before {
+              transform: translateX(26px);
+            }
+          }
+        }
+
+        /* ── Role Selector ── */
+        .roleSelector {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 12px;
+          margin-bottom: 8px;
+
+          .roleCard {
+            border: 2px solid #e0e8e0;
+            border-radius: 12px;
+            padding: 16px 12px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            background: #fafafa;
+
+            &:hover {
+              border-color: #46a91f;
+              background: #f5fbf0;
+            }
+
+            &.active {
+              border-color: #46a91f;
+              background: #f0fae8;
+              box-shadow: 0 0 0 3px rgba(70, 169, 31, 0.15);
+            }
+
+            .roleEmoji {
+              font-size: 28px;
+              display: block;
+              margin-bottom: 6px;
+            }
+
+            h3 {
+              font-size: 14px;
+              font-weight: 700;
+              color: #1a2a1a;
+              margin: 0 0 4px;
+            }
+
+            p {
+              font-size: 11px;
+              color: #888;
+              margin: 0;
+              line-height: 1.4;
+            }
+          }
+        }
+      }
+    }
+
+    .error-message {
+      color: #ff4d4f;
+      font-weight: 500;
+      text-align: center;
+    }
+
+    .success-message {
+      color: #52c41a;
+      font-weight: 500;
+      text-align: center;
+    }
+
+    button {
+      background-color: #46a91f;
+      color: white;
+      font-size: 16px;
+      font-weight: 600;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+
+      &:hover {
+        background-color: #3d951b;
+      }
+    }
+  }
+}

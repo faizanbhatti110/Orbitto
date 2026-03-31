@@ -1,0 +1,153 @@
+.footer {
+  background-color: #ffffff;
+  padding: 80px 0;
+
+  .footer-container {
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .footer-main {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 40px 20px;
+    padding-bottom: 60px;
+    border-bottom: 1px solid #f0f0f0;
+  }
+
+  .footer-column {
+    min-width: 200px;
+  }
+
+  .footer-about {
+    flex: 2;
+    min-width: 320px;
+  }
+
+  .footer-links,
+  .footer-contact {
+    flex: 1;
+  }
+
+  .footer-logo {
+    display: block;
+    max-width: 322px;
+    height: auto;
+    margin-bottom: 20px;
+  }
+
+  .footer-description {
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #252525;
+    margin-bottom: 20px;
+    max-width: 320px;
+  }
+
+  .social-links {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+
+    a img {
+      display: block;
+      height: 28px;
+      width: auto;
+    }
+  }
+
+  .footer-title {
+    font-size: 24px;
+    font-weight: 500;
+    color: #252525;
+    margin-bottom: 28px;
+  }
+
+  .footer-links ul li {
+    margin-bottom: 16px;
+    list-style: none;
+
+
+    a {
+      font-size: 18px;
+      font-weight: 400;
+      color: #252525;
+      transition: opacity 0.3s ease;
+      text-decoration: none;
+
+      &:hover {
+        opacity: 0.7;
+      }
+    }
+  }
+
+  .contact-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 28px;
+    font-size: 18px;
+    font-weight: 400;
+    color: #252525;
+
+    img {
+      width: 25px;
+      height: 25px;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  .footer-bottom {
+    padding-top: 30px;
+    text-align: center;
+
+    p {
+      font-size: 18px;
+      font-weight: 400;
+      color: #9d9d9d;
+    }
+  }
+
+  @media (max-width: 992px) {
+    .footer-main {
+      justify-content: flex-start;
+    }
+    .footer-about {
+      flex-basis: 100%;
+      margin-bottom: 20px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    padding: 60px 0;
+
+    .footer-main {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .footer-about {
+      margin-bottom: 0;
+    }
+
+    .footer-description {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .social-links {
+      justify-content: center;
+    }
+
+    .contact-item {
+      justify-content: center;
+    }
+  }
+}

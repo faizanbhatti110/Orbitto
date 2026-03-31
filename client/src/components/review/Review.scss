@@ -1,0 +1,90 @@
+.reviewCard {
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin: 20px 0;
+
+  .reviewHeader {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+
+    .avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .userInfo {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+
+      .username {
+        font-weight: 600;
+        color: #333;
+        font-size: 16px;
+      }
+
+      .countryInfo {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 13px;
+        color: #888;
+
+        img {
+          width: 18px;
+          height: 12px;
+          object-fit: contain;
+        }
+      }
+    }
+  }
+
+  .reviewStars {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    img {
+      width: 16px;
+      height: 16px;
+    }
+
+    span {
+      font-weight: 600;
+      color: #ffc108;
+      font-size: 14px;
+    }
+  }
+
+  .reviewDesc {
+    font-size: 15px;
+    color: #444;
+    line-height: 1.6;
+  }
+
+  .helpfulBlock {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    color: #777;
+
+    img {
+      width: 16px;
+      cursor: pointer;
+      transition: 0.2s ease;
+
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+  }
+}

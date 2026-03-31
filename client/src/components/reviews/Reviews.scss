@@ -1,0 +1,197 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;600;700&display=swap');
+
+.reviews {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  &>h2 {
+    font-family: "DM Serif Display", serif;
+    font-size: 22px;
+    font-weight: 400;
+    color: #1a2a1a;
+    margin: 0;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #eef2ee;
+  }
+
+  hr {
+    height: 0;
+    border: none;
+    border-top: 1px solid #f0f4f0;
+    margin: 4px 0;
+  }
+
+  /* ── State messages ── */
+  .reviews-loading,
+  .reviews-empty {
+    font-size: 14px;
+    color: #999;
+    padding: 20px 0;
+    text-align: center;
+    font-style: italic;
+  }
+
+  .reviews-error {
+    font-size: 14px;
+    color: #dc2626;
+    padding: 12px 0;
+  }
+
+  /* ── Add a review box ── */
+  .add {
+    background: linear-gradient(135deg, #f6fcf2 0%, #fff 100%);
+    border: 1.5px solid #c8e6a8;
+    border-radius: 16px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    box-shadow: 0 2px 12px rgba(70, 169, 31, 0.06);
+
+    h3 {
+      font-family: "DM Serif Display", serif;
+      font-size: 17px;
+      font-weight: 400;
+      color: #1a2a1a;
+      margin: 0;
+    }
+
+    .add-blocked {
+      font-size: 14px;
+      color: #888;
+      background: #f4f4f4;
+      border: 1px solid #e0e0e0;
+      border-radius: 10px;
+      padding: 14px 16px;
+      margin: 0;
+      text-align: center;
+    }
+
+    .add-error {
+      font-size: 13px;
+      color: #dc2626;
+      background: #fff5f5;
+      border: 1px solid #fecaca;
+      border-radius: 8px;
+      padding: 10px 14px;
+      margin: 0;
+    }
+
+    .add-success {
+      font-size: 13px;
+      color: #16a34a;
+      background: #f0fae8;
+      border: 1px solid #bbf7d0;
+      border-radius: 8px;
+      padding: 10px 14px;
+      margin: 0;
+      font-weight: 600;
+    }
+
+    .addForm {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+
+      /* Textarea */
+      textarea {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 14px 16px;
+        font-size: 14px;
+        line-height: 1.6;
+        border: 1.5px solid #d4edbb;
+        border-radius: 10px;
+        outline: none;
+        font-family: "DM Sans", "Montserrat", sans-serif;
+        background: #fff;
+        color: #1a2a1a;
+        resize: vertical;
+        min-height: 110px;
+        transition: border-color 0.2s, box-shadow 0.2s;
+
+        &:focus {
+          border-color: #46a91f;
+          box-shadow: 0 0 0 3px rgba(70, 169, 31, 0.1);
+        }
+
+        &::placeholder {
+          color: #bbb;
+        }
+      }
+
+      /* Rating row — label + stars select side by side */
+      .rating-row {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+
+        p {
+          font-size: 13px;
+          font-weight: 600;
+          color: #555;
+          margin: 0;
+          white-space: nowrap;
+          text-transform: uppercase;
+          letter-spacing: 0.4px;
+        }
+
+        select {
+          padding: 9px 14px;
+          font-size: 14px;
+          border: 1.5px solid #d4edbb;
+          border-radius: 8px;
+          outline: none;
+          background: #fff;
+          font-family: "DM Sans", "Montserrat", sans-serif;
+          color: #333;
+          cursor: pointer;
+          transition: border-color 0.2s, box-shadow 0.2s;
+
+          &:focus {
+            border-color: #46a91f;
+            box-shadow: 0 0 0 3px rgba(70, 169, 31, 0.1);
+          }
+        }
+      }
+
+      /* Submit row */
+      .form-actions {
+        display: flex;
+        justify-content: flex-end;
+
+        button {
+          padding: 11px 32px;
+          background: #46a91f;
+          color: #fff;
+          font-size: 14px;
+          font-weight: 600;
+          border: none;
+          border-radius: 10px;
+          cursor: pointer;
+          font-family: "DM Sans", "Montserrat", sans-serif;
+          transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+          box-shadow: 0 2px 8px rgba(70, 169, 31, 0.25);
+
+          &:hover:not(:disabled) {
+            background: #3c921c;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 14px rgba(70, 169, 31, 0.3);
+          }
+
+          &:active {
+            transform: translateY(0);
+          }
+
+          &:disabled {
+            background: #a8d48a;
+            cursor: not-allowed;
+            box-shadow: none;
+            transform: none;
+          }
+        }
+      }
+    }
+  }
+}

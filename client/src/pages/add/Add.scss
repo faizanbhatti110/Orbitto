@@ -1,0 +1,190 @@
+.add {
+  display: flex;
+  justify-content: center;
+  background: #f8f9f7;
+  min-height: 80vh;
+  font-family: "Montserrat", sans-serif;
+
+  .container {
+    width: 1200px;
+    padding: 60px 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+
+    h1 {
+      font-size: 28px;
+      font-weight: 700;
+      color: #1a2a1a;
+      margin: 0;
+    }
+
+    .sections {
+      display: flex;
+      justify-content: space-between;
+      gap: 60px;
+
+      .info,
+      .details {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        min-width: 0;
+
+        label {
+          color: #333;
+          font-weight: 500;
+          font-size: 14px;
+        }
+
+        .req {
+          color: #e53e3e;
+          margin-left: 2px;
+        }
+
+        input,
+        select,
+        textarea {
+          width: 100%;
+          box-sizing: border-box;
+          padding: 12px 14px;
+          font-size: 14px;
+          border: 1px solid #ccc;
+          border-radius: 6px;
+          outline: none;
+          font-family: "Montserrat", sans-serif;
+          transition: border-color 0.2s;
+          background: #fff;
+
+          &:focus {
+            border-color: #46a91f;
+            box-shadow: 0 0 0 3px rgba(70, 169, 31, 0.08);
+          }
+
+          &::placeholder {
+            color: #bbb;
+          }
+        }
+
+        textarea {
+          resize: vertical;
+        }
+
+        .images {
+          .imagesInputs {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+
+            input[type="file"] {
+              padding: 8px;
+              background: #fafafa;
+              border-style: dashed;
+            }
+          }
+        }
+
+        /* ── Feature add row — renamed to avoid conflict with .add page class ── */
+        .featureForm {
+          display: flex;
+          gap: 10px;
+
+          input {
+            flex: 1;
+          }
+
+          button {
+            width: 80px;
+            padding: 10px;
+            background: #46a91f;
+            color: white;
+            font-size: 13px;
+            font-weight: 600;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-family: "Montserrat", sans-serif;
+            transition: background 0.2s;
+
+            &:hover {
+              background: #3c921c;
+            }
+          }
+        }
+
+        .addedFeatures {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 8px;
+
+          .item button {
+            padding: 5px 10px;
+            font-size: 12px;
+            background: transparent;
+            color: #e53e3e;
+            border: 1px solid #e53e3e;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+            margin-top: 0;
+            font-family: "Montserrat", sans-serif;
+
+            span {
+              font-weight: 700;
+            }
+
+            &:hover {
+              background: #fff5f5;
+            }
+          }
+        }
+      }
+    }
+
+    /* ── Full-width footer ── */
+    .formFooter {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+
+      .error-message {
+        color: #ff4d4f;
+        font-size: 13px;
+        font-weight: 500;
+      }
+
+      .success-message {
+        color: #52c41a;
+        font-size: 13px;
+        font-weight: 500;
+      }
+
+      .submitBtn {
+        width: 100%;
+        padding: 15px;
+        background: #46a91f;
+        color: white;
+        font-size: 15px;
+        font-weight: 700;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background 0.2s;
+        font-family: "Montserrat", sans-serif;
+
+        &:hover:not(:disabled) {
+          background: #3c921c;
+        }
+
+        &:disabled {
+          background: #a1d28a;
+          cursor: not-allowed;
+        }
+      }
+    }
+  }
+}

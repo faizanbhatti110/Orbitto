@@ -1,0 +1,100 @@
+.orders {
+  display: flex;
+  justify-content: center;
+  background: #f7f8fa;
+  min-height: 80vh;
+  font-family: "Montserrat", sans-serif;
+
+  .container {
+    width: 1200px;
+    padding: 50px 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+
+    /* ── Header ── */
+    .title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      h1 {
+        font-size: 26px;
+        font-weight: 700;
+        color: #1a2a1a;
+        margin: 0;
+      }
+    }
+
+    /* ── Table Wrapper ── */
+    .table-wrapper {
+      background: white;
+      border-radius: 14px;
+      border: 1px solid #eef0ee;
+      overflow: hidden;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+
+      thead {
+        background: #f5f9f4;
+        border-bottom: 1px solid #e8f0e8;
+
+        th {
+          padding: 14px 18px;
+          text-align: left;
+          font-size: 12px;
+          font-weight: 700;
+          color: #888;
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+        }
+      }
+
+      tbody tr {
+        border-bottom: 1px solid #f2f4f2;
+        transition: background 0.15s;
+
+        &:last-child {
+          border-bottom: none;
+        }
+
+        &:hover {
+          background: #fafef8;
+        }
+      }
+
+      td {
+        padding: 16px 18px;
+        vertical-align: middle;
+        font-size: 14px;
+        color: #333;
+
+        sup {
+          font-size: 12px;
+        }
+
+        .image {
+          width: 72px;
+          height: 48px;
+          object-fit: cover;
+          border-radius: 8px;
+          border: 1px solid #eee;
+        }
+
+        .message {
+          width: 26px;
+          cursor: pointer;
+          transition: transform 0.2s;
+
+          &:hover {
+            transform: scale(1.1);
+          }
+        }
+      }
+    }
+  }
+}
