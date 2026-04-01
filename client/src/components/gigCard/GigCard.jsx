@@ -39,9 +39,9 @@ const GigCard = ({ item }) => {
                 />
                 <div className="gigCard__seller-info">
                   <span className="gigCard__username">{data.username}</span>
-                  <span className={`gigCard__role ${data.role === "faculty" ? "faculty" : "student"}`}>
+                  {/* <span className={`gigCard__role ${data.role === "faculty" ? "faculty" : "student"}`}>
                     {data.role === "faculty" ? "Faculty" : "Student"}
-                  </span>
+                  </span> */}
                 </div>
               </>
             )}

@@ -79,9 +79,9 @@ function Gig() {
                     <span>{avgRating}.0</span>
                   </div>
                 )}
-                <span className={`role-tag ${dataUser.role === "faculty" ? "faculty" : "student"}`}>
+                {/* <span className={`role-tag ${dataUser.role === "faculty" ? "faculty" : "student"}`}>
                   {dataUser.role === "faculty" ? "Faculty" : "Student"}
-                </span>
+                </span> */}
               </div>
             )}
           </div>
@@ -141,9 +141,9 @@ function Gig() {
                 <div className="seller-card-info">
                   <div className="seller-card-top">
                     <span className="seller-card-name">{dataUser.username}</span>
-                    <span className={`role-tag ${dataUser.role === "faculty" ? "faculty" : "student"}`}>
+                    {/* <span className={`role-tag ${dataUser.role === "faculty" ? "faculty" : "student"}`}>
                       {dataUser.role === "faculty" ? "Faculty" : "Student"}
-                    </span>
+                    </span> */}
                   </div>
                   {avgRating > 0 && (
                     <div className="rating-inline">
