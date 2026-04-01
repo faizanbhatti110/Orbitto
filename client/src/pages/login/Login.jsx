@@ -1,90 +1,138 @@
+// ── Login.jsx — Orbitto Dark Premium ──
 import React, { useState } from "react";
 import "./Login.scss";
 import newRequest from "../../utils/newRequest";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
   const [successMsg, setSuccessMsg] = useState("");
-
+  const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setErrorMsg("");
     setSuccessMsg("");
-
     if (!username || !password) {
-      setErrorMsg("Please fill in both username and password.");
+      setErrorMsg("Please fill in both fields.");
       return;
     }
-
+    setLoading(true);
     try {
       const res = await newRequest.post("/auth/login", { username, password });
       localStorage.setItem("currentUser", JSON.stringify(res.data));
-      setSuccessMsg("✅ Login successful. Redirecting...");
-      
-      setTimeout(() => {
-        navigate("/");
-      }, 1500); // Optional delay for UX
+      setSuccessMsg("Login successful! Redirecting…");
+      setTimeout(() => navigate("/"), 1200);
     } catch (err) {
-      console.error(err);
-
       const message = err.response?.data;
-
       if (typeof message === "string") {
         if (message.toLowerCase().includes("user not found")) {
-          setErrorMsg("❌ User not found. Please check your username.");
+          setErrorMsg("No account found with that username.");
         } else if (message.toLowerCase().includes("wrong password")) {
-          setErrorMsg("❌ Incorrect password. Please try again.");
+          setErrorMsg("Incorrect password. Please try again.");
         } else {
-          setErrorMsg(`❌ ${message}`);
+          setErrorMsg(message);
         }
       } else {
-        setErrorMsg("❌ Something went wrong. Please try again later.");
+        setErrorMsg("Something went wrong. Please try again.");
       }
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
     <div className="login">
-      <form onSubmit={handleSubmit}>
-        <h1>Sign in</h1>
+      <div className="login__glow login__glow--1" />
+      <div className="login__glow login__glow--2" />
 
-        <div className="group">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="icon">
-            <circle strokeWidth="1.5" stroke="#1C274C" r="4" cy="6" cx="10"></circle>
-            <path strokeLinecap="round" strokeWidth="1.5" stroke="#1C274C" d="M21 10H19M19 10H17M19 10L19 8M19 10L19 12"></path>
-            <path strokeLinecap="round" strokeWidth="1.5" stroke="#1C274C" d="M17.9975 18C18 17.8358 18 17.669 18 17.5C18 15.0147 14.4183 13 10 13C5.58172 13 2 15.0147 2 17.5C2 19.9853 2 22 10 22C12.231 22 13.8398 21.8433 15 21.5634"></path>
-          </svg>
-          <input
-            className="input"
-            type="text"
-            placeholder="Username"
-            onChange={(e) => setUsername(e.target.value)}
-          />
+      <div className="login__card">
+        <div className="login__header">
+          <Link to="/" className="login__logo">Orbit<span>to</span></Link>
+          <h1 className="login__title">Welcome back</h1>
+          <p className="login__subtitle">Sign in to your Orbitto account</p>
         </div>
 
-        <div className="group">
-          <svg stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" className="icon" strokeLinejoin="round" strokeLinecap="round">
-            <path d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z"></path>
-          </svg>
-          <input
-            className="input"
-            type="password"
-            placeholder="Password"
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </div>
+        <form className="login__form" onSubmit={handleSubmit}>
+          <div className="login__field">
+            <label>Username</label>
+            <div className="login__input-wrap">
+              <svg className="login__input-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                <circle cx="12" cy="7" r="4"/>
+              </svg>
+              <input
+                type="text"
+                placeholder="your_username"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                autoComplete="username"
+              />
+            </div>
+          </div>
 
-        <button type="submit">Login</button>
+          <div className="login__field">
+            <label>Password</label>
+            <div className="login__input-wrap">
+              <svg className="login__input-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+              </svg>
+              <input
+                type={showPassword ? "text" : "password"}
+                placeholder="••••••••"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                autoComplete="current-password"
+              />
+              <button type="button" className="login__toggle-pw" onClick={() => setShowPassword(!showPassword)}>
+                {showPassword ? (
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94"/>
+                    <path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"/>
+                    <line x1="1" y1="1" x2="23" y2="23"/>
+                  </svg>
+                ) : (
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                    <circle cx="12" cy="12" r="3"/>
+                  </svg>
+                )}
+              </button>
+            </div>
+          </div>
 
-        {/* Error and success messages */}
-        {errorMsg && <p className="error-message">{errorMsg}</p>}
-        {successMsg && <p className="success-message">{successMsg}</p>}
-      </form>
+          {errorMsg && (
+            <div className="login__msg login__msg--error">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+              </svg>
+              {errorMsg}
+            </div>
+          )}
+          {successMsg && (
+            <div className="login__msg login__msg--success">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+              {successMsg}
+            </div>
+          )}
+
+          <button type="submit" className="login__btn" disabled={loading}>
+            {loading ? <><span className="login__spinner" />Signing in…</> : "Sign In"}
+          </button>
+        </form>
+
+        <p className="login__footer">
+          Don't have an account?{" "}
+          <Link to="/register" className="login__footer-link">Create one</Link>
+        </p>
+      </div>
     </div>
   );
 }

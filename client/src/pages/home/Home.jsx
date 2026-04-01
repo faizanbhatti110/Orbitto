@@ -1,25 +1,67 @@
+// ── Home.jsx — Orbitto Dark Premium ──
 import React from "react";
 import "./Home.scss";
 import Featured from "../../components/featured/Featured";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Slide from "../../components/slide/Slide";
 import ProjectCard from "../../components/projectCard/ProjectCard";
 import { useQuery } from "@tanstack/react-query";
 import newRequest from "../../utils/newRequest";
 
 function Home() {
+  const navigate = useNavigate();
+
   const categories = [
-    { name: "Programming & Tech", image: "https://res.cloudinary.com/ddfridpi7/image/upload/v1753722199/5_wp7wdf.jpg" },
-    { name: "Video & Animation", image: "https://res.cloudinary.com/ddfridpi7/image/upload/v1753722198/6_h2h4p7.jpg" },
-    { name: "Graphics & Design", image: "https://res.cloudinary.com/ddfridpi7/image/upload/v1753722199/8_x1evqy.jpg" },
-    { name: "Business", image: "https://res.cloudinary.com/ddfridpi7/image/upload/v1753722198/3_an8lsw.jpg" },
-    { name: "Tutoring", image: "https://res.cloudinary.com/ddfridpi7/image/upload/v1753722198/2_nq2wro.jpg" },
-    { name: "Digital Marketing", image: "https://res.cloudinary.com/ddfridpi7/image/upload/v1753722199/7_vsfotb.jpg" },
-    { name: "Writing & Translation", image: "https://res.cloudinary.com/ddfridpi7/image/upload/v1753722198/1_gtfkxh.jpg" },
-    { name: "Music & Audio", image: "https://res.cloudinary.com/ddfridpi7/image/upload/v1753722199/4_zayyyh.jpg" },
+    { name: "Programming & Tech",   image: "https://res.cloudinary.com/ddfridpi7/image/upload/v1753722199/5_wp7wdf.jpg" },
+    { name: "Video & Animation",    image: "https://res.cloudinary.com/ddfridpi7/image/upload/v1753722198/6_h2h4p7.jpg" },
+    { name: "Graphics & Design",    image: "https://res.cloudinary.com/ddfridpi7/image/upload/v1753722199/8_x1evqy.jpg" },
+    { name: "Business",             image: "https://res.cloudinary.com/ddfridpi7/image/upload/v1753722198/3_an8lsw.jpg" },
+    { name: "Consulting",           image: "https://res.cloudinary.com/ddfridpi7/image/upload/v1753722198/2_nq2wro.jpg" },
+    { name: "Digital Marketing",    image: "https://res.cloudinary.com/ddfridpi7/image/upload/v1753722199/7_vsfotb.jpg" },
+    { name: "Writing & Translation",image: "https://res.cloudinary.com/ddfridpi7/image/upload/v1753722198/1_gtfkxh.jpg" },
+    { name: "Data & Analytics",     image: "https://res.cloudinary.com/ddfridpi7/image/upload/v1753722199/4_zayyyh.jpg" },
   ];
 
-  // Fetch latest gigs for the showcase carousel
+  const features = [
+    {
+      icon: "🔒",
+      title: "Trusted Internal Network",
+      desc: "Work with colleagues you already know — no risk of hiring strangers from the internet.",
+    },
+    {
+      icon: "⚡",
+      title: "Fast Turnaround",
+      desc: "Internal professionals respond faster and understand your organization's context already.",
+    },
+    {
+      icon: "💼",
+      title: "Any Sector, Any Size",
+      desc: "From tech companies to hospitals to law firms — Orbitto works for every kind of organization.",
+    },
+    {
+      icon: "📊",
+      title: "Milestone Payments",
+      desc: "Pay securely based on milestones. Funds are only released when you approve the work.",
+    },
+    {
+      icon: "🤝",
+      title: "Skill Endorsements",
+      desc: "Colleagues endorse each other's skills, building a real trust graph inside your org.",
+    },
+    {
+      icon: "🌐",
+      title: "SaaS for Organizations",
+      desc: "Orbitto is sold to organizations — your internal marketplace, your brand, your rules.",
+    },
+  ];
+
+  const howItWorks = [
+    { step: "01", title: "Your Org Joins", desc: "Your organization subscribes and onboards team members to the private Orbitto workspace." },
+    { step: "02", title: "Post or Browse", desc: "Post a service you offer or browse gigs posted by colleagues across your organization." },
+    { step: "03", title: "Hire with Trust", desc: "You already know these people — hire confidently based on real relationships, not anonymous reviews." },
+    { step: "04", title: "Pay & Grow", desc: "Secure milestone-based payments. Build your internal reputation and unlock new opportunities." },
+  ];
+
   const { data: gigs = [] } = useQuery({
     queryKey: ["showcase-gigs"],
     queryFn: () =>
@@ -33,16 +75,23 @@ function Home() {
       <Featured />
 
       {/* ── Categories ── */}
-      <section className="categories-section" id="categories">
+      <section className="categories-section">
         <div className="container">
-          <h2 className="section-title">
-            Choose Different <span className="highlight">Category</span>
-          </h2>
+          <div className="section-header">
+            <h2 className="section-title">
+              Explore by <span className="highlight">Category</span>
+            </h2>
+            <p className="section-sub">Find the right talent for every kind of project</p>
+          </div>
           <div className="category-grid">
-            {categories.map((cat, index) => (
-              <Link key={index} to={`/gigs?cat=${encodeURIComponent(cat.name)}`} className="category-card">
+            {categories.map((cat, i) => (
+              <Link
+                key={i}
+                to={`/gigs?cat=${encodeURIComponent(cat.name)}`}
+                className="category-card"
+              >
                 <img src={cat.image} alt={cat.name} className="category-card__image" />
-                <div className="category-card__overlay"></div>
+                <div className="category-card__overlay" />
                 <h3 className="category-card__name">{cat.name}</h3>
               </Link>
             ))}
@@ -50,48 +99,87 @@ function Home() {
         </div>
       </section>
 
-      {/* ── Features light ── */}
-      <div className="features">
+      {/* ── How It Works ── */}
+      <section className="how-it-works">
+        <div className="bg-glow" />
         <div className="container">
-          <div className="item">
-            <h1>Unlock a world of academic and professional opportunities</h1>
-            <div className="title"><img src="./img/checkB.png" alt="" />Connecting Skills with Opportunities</div>
-            <p>Connect with skilled university students and faculty for academic projects, freelance work, and career-building opportunities.</p>
-            <div className="title"><img src="./img/checkB.png" alt="" />The best for every budget</div>
-            <p>Find high-quality services at every price point. No hourly rates, just project-based pricing.</p>
-            <div className="title"><img src="./img/checkB.png" alt="" />Quality work done quickly</div>
-            <p>Find the right freelancer to begin working on your project within minutes.</p>
-            <div className="title"><img src="./img/checkB.png" alt="" />24/7 support</div>
-            <p>Find high-quality services at every price point. No hourly rates, just project-based pricing.</p>
+          <div className="section-header">
+            <h2 className="section-title">How <span className="highlight">Orbitto</span> Works</h2>
+            <p className="section-sub">Four simple steps to unlock your organization's hidden talent</p>
           </div>
-          <div className="item">
-            <img src="https://res.cloudinary.com/ddfridpi7/image/upload/v1753723770/working_xknnjt.png" className="feature-image" />
+          <div className="steps-grid ">
+            {howItWorks.map((item, i) => (
+              <div className="step-card" key={i}>
+                <span className="step-number">{item.step}</span>
+                <h3 className="step-title">{item.title}</h3>
+                <p className="step-desc">{item.desc}</p>
+                {i < howItWorks.length - 1 && <div className="step-connector" />}
+              </div>
+            ))}
           </div>
         </div>
-      </div>
+      </section>
 
-      {/* ── Features dark ── */}
-      <div className="features dark">
+      {/* ── Features ── */}
+      <section className="features-section">
         <div className="container">
-          <div className="item">
-            <h1>CampusConnect</h1>
-            <h1>A platform designed for <i>students and faculty</i></h1>
-            <p style={{ marginLeft: "75px" }}>Upgrade to a seamless experience with opportunities for academic and professional growth.</p>
-            <div className="title" style={{ marginLeft: "100px" }}><img src="./img/check.png" alt="" />Find talent for research, tutoring, projects, and freelance work.</div>
-            <div className="title" style={{ marginLeft: "110px" }}><img src="./img/check.png" alt="" />Discover jobs and collaborations suited to your expertise.</div>
-            <div className="title" style={{ marginLeft: "120px" }}><img src="./img/check.png" alt="" />Post jobs, track applications, and collaborate efficiently.</div>
-            <a href="/gigs"><button>Explore CampusConnect</button></a>
+          <div className="features-left">
+            <div className="section-header left-align">
+              <h2 className="section-title">
+                Why teams choose <br />
+                <span className="highlight">Orbitto</span>
+              </h2>
+              <p className="section-sub">
+                Unlike Fiverr or Upwork, Orbitto operates within your organization's trusted network.
+                No strangers. No uncertainty. Just colleagues who deliver.
+              </p>
+            </div>
+            <Link to="/gigs">
+              <button className="cta-btn">Explore Services →</button>
+            </Link>
+          </div>
+          <div className="features-right">
+            {features.map((f, i) => (
+              <div className="feature-card" key={i}>
+                <span className="feature-icon">{f.icon}</span>
+                <div>
+                  <h4 className="feature-title">{f.title}</h4>
+                  <p className="feature-desc">{f.desc}</p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
-      </div>
+      </section>
 
-      {/* ── Showcase: real gigs from DB ── */}
+      {/* ── CTA Banner ── */}
+      <section className="cta-banner">
+        <div className="cta-glow" />
+        <div className="container">
+          <h2>Ready to unlock your organization's potential?</h2>
+          <p>Join hundreds of organizations already using Orbitto to hire from within.</p>
+          <div className="cta-actions">
+            <Link to="/register"><button className="cta-btn primary">Get Started Free</button></Link>
+            <Link to="/gigs"><button className="cta-btn ghost">Browse Services</button></Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Live Gigs Carousel ── */}
       {gigs.length > 0 && (
-        <Slide slidesToShow={4} arrowsScroll={4}>
-          {gigs.map((gig) => (
-            <ProjectCard key={gig._id} gig={gig} />
-          ))}
-        </Slide>
+        <div className="gigs-section">
+          <div className="container">
+            <div className="section-header">
+              <h2 className="section-title">Live <span className="highlight">Services</span></h2>
+              <p className="section-sub">Real services posted by professionals in your network</p>
+            </div>
+          </div>
+          <Slide slidesToShow={4} arrowsScroll={4}>
+            {gigs.map((gig) => (
+              <ProjectCard key={gig._id} gig={gig} />
+            ))}
+          </Slide>
+        </div>
       )}
     </div>
   );

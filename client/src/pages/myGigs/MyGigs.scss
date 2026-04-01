@@ -1,272 +1,348 @@
-.myGigs {
-  display: flex;
-  justify-content: center;
-  background: #f7f8fa;
-  min-height: 80vh;
-  font-family: "Montserrat", sans-serif;
+// ── MyGigs.scss — Orbitto Dark Premium ──
 
-  .container {
-    width: 1200px;
-    padding: 50px 30px;
+.myGigs {
+  position: relative;
+  min-height: 100vh;
+  background: var(--orb-bg);
+  overflow: hidden;
+  padding: 60px 24px;
+
+  &__glow {
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(124, 58, 237, 0.1) 0%, transparent 70%);
+    top: -100px;
+    right: -100px;
+    pointer-events: none;
+    filter: blur(80px);
+  }
+
+  &__inner {
+    position: relative;
+    z-index: 1;
+    max-width: 1200px;
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
     gap: 28px;
+  }
 
-    /* ── Header ── */
-    .title {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+  // Header
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
 
-      .title-left {
-        display: flex;
-        align-items: center;
-        gap: 12px;
+  &__header-left {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
 
-        h1 {
-          font-size: 26px;
-          font-weight: 700;
-          color: #1a2a1a;
-          margin: 0;
-        }
+  &__title {
+    font-family: 'Syne', sans-serif;
+    font-size: 30px;
+    font-weight: 800;
+    color: var(--orb-text);
+    letter-spacing: -0.8px;
+    margin: 0;
+  }
 
-        .gig-count {
-          background: #f0fae8;
-          color: #2d8a10;
-          border: 1px solid #c8ebb0;
-          border-radius: 20px;
-          padding: 2px 12px;
-          font-size: 13px;
-          font-weight: 600;
-        }
-      }
+  &__count {
+    background: rgba(124, 58, 237, 0.12);
+    border: 1px solid rgba(124, 58, 237, 0.25);
+    color: var(--orb-purple-light);
+    border-radius: 50px;
+    padding: 3px 12px;
+    font-size: 13px;
+    font-weight: 600;
+  }
 
-      .add-btn {
-        background-color: #46a91f;
-        color: white;
-        font-weight: 600;
-        font-size: 14px;
-        border: none;
-        padding: 10px 20px;
-        border-radius: 8px;
-        cursor: pointer;
-        transition: background 0.2s;
-        font-family: "Montserrat", sans-serif;
+  &__add-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(135deg, var(--orb-purple), var(--orb-purple-light));
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 11px 20px;
+    font-size: 14px;
+    font-weight: 700;
+    font-family: 'DM Sans', sans-serif;
+    cursor: pointer;
+    transition: all 0.25s;
 
-        &:hover {
-          background-color: #3c921c;
-        }
-      }
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px var(--orb-purple-glow);
     }
+  }
 
-    /* ── States ── */
-    .state-box {
-      text-align: center;
-      padding: 40px;
-      color: #888;
+  // State boxes
+  &__state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 80px 40px;
+    background: var(--orb-surface);
+    border: 1px solid var(--orb-border);
+    border-radius: 20px;
+    text-align: center;
+
+    p {
       font-size: 15px;
-      background: white;
-      border-radius: 12px;
-      border: 1px solid #eee;
-
-      &.error {
-        color: #e53e3e;
-      }
+      color: var(--orb-muted);
+      margin: 0;
     }
 
-    .empty-state {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 14px;
-      padding: 60px 40px;
-      background: white;
-      border-radius: 16px;
-      border: 1px dashed #d0e8c8;
+    &--error p { color: #fca5a5; }
+  }
 
-      .empty-icon {
-        font-size: 48px;
-      }
+  &__spinner {
+    width: 36px;
+    height: 36px;
+    border: 3px solid var(--orb-border);
+    border-top-color: var(--orb-purple-light);
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
 
-      p {
-        font-size: 15px;
-        color: #888;
-        margin: 0;
-      }
-    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+  }
 
-    /* ── Table ── */
-    .table-wrapper {
-      background: white;
-      border-radius: 14px;
-      border: 1px solid #eef0ee;
-      overflow: hidden;
-      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
-    }
+  // Empty state
+  &__empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    padding: 80px 40px;
+    background: var(--orb-surface);
+    border: 1px dashed var(--orb-border);
+    border-radius: 20px;
+    text-align: center;
 
-    table {
-      width: 100%;
-      border-collapse: collapse;
-
-      thead {
-        background: #f5f9f4;
-        border-bottom: 1px solid #e8f0e8;
-
-        th {
-          padding: 14px 18px;
-          text-align: left;
-          font-size: 12px;
-          font-weight: 700;
-          color: #888;
-          text-transform: uppercase;
-          letter-spacing: 0.5px;
-        }
-      }
-
-      tbody tr {
-        border-bottom: 1px solid #f2f4f2;
-        transition: background 0.15s;
-
-        &:last-child {
-          border-bottom: none;
-        }
-
-        &:hover {
-          background: #fafef8;
-        }
-      }
-
-      td {
-        padding: 16px 18px;
-        vertical-align: middle;
-        font-size: 14px;
-        color: #333;
-      }
-    }
-
-    /* ── Gig cell (cover + title + desc) ── */
-    .gig-cell {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      text-decoration: none;
-      max-width: 380px;
-
-      .gig-cover {
-        width: 72px;
-        height: 48px;
-        object-fit: cover;
-        border-radius: 8px;
-        flex-shrink: 0;
-        border: 1px solid #eee;
-        transition: transform 0.2s;
-      }
-
-      &:hover .gig-cover {
-        transform: scale(1.05);
-      }
-
-      .gig-info {
-        display: flex;
-        flex-direction: column;
-        gap: 4px;
-      }
-
-      .gig-title {
-        font-weight: 600;
-        font-size: 14px;
-        color: #1a2a1a;
-        transition: color 0.15s;
-        line-height: 1.3;
-      }
-
-      &:hover .gig-title {
-        color: #46a91f;
-      }
-
-      .gig-desc {
-        font-size: 12px;
-        color: #aaa;
-        line-height: 1.4;
-      }
-    }
-
-    /* ── Category badge ── */
-    .cat-badge {
-      display: inline-block;
-      padding: 4px 10px;
-      background: #f0f4ff;
-      color: #4a6cf7;
-      border-radius: 20px;
-      font-size: 11px;
-      font-weight: 600;
-      white-space: nowrap;
-    }
-
-    /* ── Price ── */
-    .price {
+    h3 {
+      font-family: 'Syne', sans-serif;
+      font-size: 20px;
       font-weight: 700;
-      font-size: 15px;
-      color: #1a2a1a;
+      color: var(--orb-text);
+      margin: 0;
     }
 
-    /* ── Sales ── */
-    .sales {
-      font-weight: 600;
-      color: #46a91f;
+    p {
+      font-size: 14px;
+      color: var(--orb-muted);
+      margin: 0;
+      max-width: 320px;
+      line-height: 1.6;
     }
+  }
 
-    /* ── Status badge ── */
-    .status-badge {
-      display: inline-block;
-      padding: 4px 10px;
-      border-radius: 20px;
-      font-size: 11px;
-      font-weight: 700;
+  &__empty-icon {
+    font-size: 48px;
+    margin-bottom: 8px;
+  }
 
-      &.active {
-        background: #f0fae8;
-        color: #2d8a10;
-        border: 1px solid #c8ebb0;
+  // Table
+  &__table-wrap {
+    background: var(--orb-surface);
+    border: 1px solid var(--orb-border);
+    border-radius: 18px;
+    overflow: hidden;
+  }
+
+  &__table {
+    width: 100%;
+    border-collapse: collapse;
+
+    thead {
+      background: rgba(124, 58, 237, 0.06);
+      border-bottom: 1px solid var(--orb-border);
+
+      th {
+        padding: 14px 18px;
+        text-align: left;
+        font-size: 11px;
+        font-weight: 700;
+        color: var(--orb-muted);
+        text-transform: uppercase;
+        letter-spacing: 0.8px;
       }
     }
 
-    /* ── Delete button ── */
-    .delete-btn {
-      background: transparent;
-      border: 1px solid #ffcdd2;
-      color: #e53e3e;
-      padding: 6px 12px;
-      border-radius: 6px;
-      font-size: 12px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.2s;
-      font-family: "Montserrat", sans-serif;
+    tbody tr {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      transition: background 0.15s;
 
-      &:hover {
-        background: #fff2f2;
-        border-color: #e53e3e;
-      }
+      &:last-child { border-bottom: none; }
+      &:hover { background: rgba(124, 58, 237, 0.04); }
     }
 
-    /* ── Edit button ── */
-    .edit-btn {
-      background: transparent;
-      border: 1px solid #c6f6d5;
-      color: #38a169;
-      padding: 6px 12px;
-      border-radius: 6px;
-      font-size: 12px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.2s;
-      font-family: "Montserrat", sans-serif;
-
-      &:hover {
-        background: #f0fff4;
-        border-color: #38a169;
-      }
+    td {
+      padding: 16px 18px;
+      vertical-align: middle;
+      font-size: 14px;
+      color: var(--orb-text);
     }
+  }
+
+  // Gig cell
+  &__gig-cell {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    text-decoration: none;
+    max-width: 380px;
+  }
+
+  &__cover {
+    width: 72px;
+    height: 48px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 1px solid var(--orb-border);
+    flex-shrink: 0;
+    transition: transform 0.2s;
+
+    .myGigs__gig-cell:hover & { transform: scale(1.04); }
+  }
+
+  &__gig-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 0;
+  }
+
+  &__gig-title {
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--orb-text);
+    transition: color 0.15s;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 260px;
+
+    .myGigs__gig-cell:hover & { color: var(--orb-purple-light); }
+  }
+
+  &__gig-desc {
+    font-size: 12px;
+    color: var(--orb-muted);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 260px;
+  }
+
+  // Badges
+  &__cat-badge {
+    display: inline-block;
+    padding: 4px 10px;
+    background: rgba(124, 58, 237, 0.1);
+    color: var(--orb-purple-light);
+    border: 1px solid rgba(124, 58, 237, 0.2);
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  &__price {
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--orb-text);
+    font-family: 'Syne', sans-serif;
+  }
+
+  &__sales {
+    font-weight: 600;
+    color: var(--orb-purple-light);
+  }
+
+  &__status {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 10px;
+    background: rgba(52, 211, 153, 0.1);
+    color: #6ee7b7;
+    border: 1px solid rgba(52, 211, 153, 0.2);
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+
+    &::before {
+      content: '';
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: #34d399;
+    }
+  }
+
+  // Action buttons
+  &__actions {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+
+  &__edit-btn,
+  &__delete-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 12px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    font-family: 'DM Sans', sans-serif;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: 1px solid;
+  }
+
+  &__edit-btn {
+    background: rgba(124, 58, 237, 0.08);
+    border-color: rgba(124, 58, 237, 0.25);
+    color: var(--orb-purple-light);
+
+    &:hover {
+      background: rgba(124, 58, 237, 0.16);
+      border-color: var(--orb-purple);
+    }
+  }
+
+  &__delete-btn {
+    background: rgba(248, 113, 113, 0.08);
+    border-color: rgba(248, 113, 113, 0.2);
+    color: #fca5a5;
+
+    &:hover {
+      background: rgba(248, 113, 113, 0.15);
+      border-color: #f87171;
+    }
+
+    &:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+  }
+
+  @media (max-width: 900px) {
+    padding: 40px 16px;
+
+    &__table-wrap { overflow-x: auto; }
+    &__table { min-width: 700px; }
   }
 }

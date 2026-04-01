@@ -1,4 +1,4 @@
-//Gigs.jsx
+// ── Gigs.jsx — Orbitto Dark Premium ──
 import React, { useEffect, useRef, useState } from "react";
 import "./Gigs.scss";
 import GigCard from "../../components/gigCard/GigCard";
@@ -21,13 +21,12 @@ function Gigs() {
   const [page, setPage] = useState(1);
   const gigsPerPage = 12;
 
-  // Reset to page 1 when category or search changes
   useEffect(() => {
     setPage(1);
   }, [search]);
 
   const { isLoading, error, data, refetch } = useQuery({
-    queryKey: ["gigs", search, sort, page], // ← search included so category changes refetch
+    queryKey: ["gigs", search, sort, page],
     queryFn: () => {
       const params = new URLSearchParams();
       if (category) params.set("cat", category);
@@ -63,8 +62,7 @@ function Gigs() {
 
   const totalPages = data ? Math.ceil(data.total / gigsPerPage) : 1;
 
-  // Page heading — show category name, search term, or default
-  const pageHeading = category || (searchTerm ? `Results for "${searchTerm}"` : "All Gigs");
+  const pageHeading = category || (searchTerm ? `Results for "${searchTerm}"` : "All Services");
 
   return (
     <div className="gigsModern">
@@ -73,10 +71,10 @@ function Gigs() {
           <h1>{pageHeading}</h1>
           <p>
             {category
-              ? `Explore ${category} talent on CampusConnect`
+              ? `Explore ${category} talent on Orbitto`
               : searchTerm
-                ? `Showing gigs matching "${searchTerm}"`
-                : "Browse all available gigs on CampusConnect"}
+                ? `Showing services matching "${searchTerm}"`
+                : "Browse all available services on Orbitto"}
           </p>
         </div>
 
@@ -111,12 +109,12 @@ function Gigs() {
 
         <div className="gigCards">
           {isLoading ? (
-            <p className="loading-msg">Loading gigs…</p>
+            <p className="loading-msg">Loading services…</p>
           ) : error ? (
             <p className="error-msg">Something went wrong. Please try again.</p>
           ) : data?.gigs?.length === 0 ? (
             <div className="empty-state">
-              <p>No gigs found{category ? ` in "${category}"` : ""}.</p>
+              <p>No services found{category ? ` in "${category}"` : ""}.</p>
             </div>
           ) : (
             data?.gigs?.map((gig) => <GigCard key={gig._id} item={gig} />)

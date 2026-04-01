@@ -1,3 +1,4 @@
+// Gig.jsx
 import React from "react";
 import "./Gig.scss";
 import { Slider } from "infinite-react-carousel/lib";

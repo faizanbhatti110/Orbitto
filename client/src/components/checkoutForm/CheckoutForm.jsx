@@ -1,3 +1,4 @@
+// ── CheckoutForm.jsx — Orbitto Dark Premium ──
 import React, { useEffect, useState } from "react";
 import {
   PaymentElement,
@@ -79,15 +80,15 @@ const CheckoutForm = () => {
           width: 100%;
           padding: 15px;
           margin-top: 8px;
-          background: #46a91f;
+          background: linear-gradient(135deg, #7c3aed, #a78bfa);
           color: white;
           font-size: 15px;
           font-weight: 700;
           border: none;
-          border-radius: 10px;
+          border-radius: 50px;
           cursor: pointer;
-          transition: background 0.2s, transform 0.1s, box-shadow 0.2s;
-          font-family: 'DM Sans', 'Montserrat', sans-serif;
+          transition: transform 0.2s, box-shadow 0.2s, opacity 0.2s;
+          font-family: 'DM Sans', sans-serif;
           letter-spacing: 0.3px;
           display: flex;
           align-items: center;
@@ -106,9 +107,8 @@ const CheckoutForm = () => {
         }
 
         .pay-btn:hover:not(:disabled) {
-          background: #337a16;
-          transform: translateY(-1px);
-          box-shadow: 0 6px 20px rgba(70, 169, 31, 0.35);
+          transform: translateY(-2px);
+          box-shadow: 0 10px 28px rgba(124, 58, 237, 0.4);
         }
 
         .pay-btn:active:not(:disabled) {
@@ -117,20 +117,16 @@ const CheckoutForm = () => {
         }
 
         .pay-btn:disabled {
-          background: #a1d28a;
+          opacity: 0.45;
           cursor: not-allowed;
           transform: none;
           box-shadow: none;
         }
 
-        .pay-btn-icon {
-          font-size: 16px;
-        }
-
         .pay-btn-spinner {
           width: 18px;
           height: 18px;
-          border: 2.5px solid rgba(255,255,255,0.4);
+          border: 2.5px solid rgba(255,255,255,0.35);
           border-top-color: white;
           border-radius: 50%;
           animation: checkoutSpin 0.75s linear infinite;
@@ -146,7 +142,7 @@ const CheckoutForm = () => {
           align-items: flex-start;
           gap: 10px;
           padding: 12px 16px;
-          border-radius: 10px;
+          border-radius: 12px;
           font-size: 13px;
           font-weight: 500;
           line-height: 1.5;
@@ -154,34 +150,34 @@ const CheckoutForm = () => {
         }
 
         .pay-message.error {
-          background: #fff2f2;
-          border: 1px solid #ffcdd2;
-          color: #c0392b;
+          background: rgba(248, 113, 113, 0.08);
+          border: 1px solid rgba(248, 113, 113, 0.2);
+          color: #fca5a5;
         }
 
         .pay-message.success {
-          background: #f0fae8;
-          border: 1px solid #c8ebb0;
-          color: #2d7a10;
+          background: rgba(52, 211, 153, 0.08);
+          border: 1px solid rgba(52, 211, 153, 0.2);
+          color: #6ee7b7;
         }
 
         .pay-message.info {
-          background: #f0f6ff;
-          border: 1px solid #bfdbfe;
-          color: #1e40af;
+          background: rgba(167, 139, 250, 0.08);
+          border: 1px solid rgba(167, 139, 250, 0.2);
+          color: #c4b5fd;
         }
 
         .pay-message-dot {
-          width: 7px;
-          height: 7px;
+          width: 6px;
+          height: 6px;
           border-radius: 50%;
           flex-shrink: 0;
-          margin-top: 4px;
+          margin-top: 5px;
         }
 
-        .pay-message.error .pay-message-dot   { background: #c0392b; }
-        .pay-message.success .pay-message-dot { background: #2d7a10; }
-        .pay-message.info .pay-message-dot    { background: #1e40af; }
+        .pay-message.error   .pay-message-dot { background: #f87171; }
+        .pay-message.success .pay-message-dot { background: #34d399; }
+        .pay-message.info    .pay-message-dot { background: #a78bfa; }
 
         @keyframes fadeIn {
           from { opacity: 0; transform: translateY(4px); }
@@ -198,16 +194,17 @@ const CheckoutForm = () => {
         .pay-divider-line {
           flex: 1;
           height: 1px;
-          background: #eaeaea;
+          background: rgba(255, 255, 255, 0.07);
         }
 
         .pay-divider-text {
           font-size: 11px;
-          color: #bbb;
-          font-weight: 500;
+          color: rgba(240, 238, 255, 0.35);
+          font-weight: 600;
           white-space: nowrap;
           text-transform: uppercase;
-          letter-spacing: 0.5px;
+          letter-spacing: 0.7px;
+          font-family: 'DM Sans', sans-serif;
         }
       `}</style>
 
@@ -233,10 +230,7 @@ const CheckoutForm = () => {
               Processing…
             </>
           ) : (
-            <>
-              {/* <span className="pay-btn-icon"></span> */}
-              Pay Now
-            </>
+            <>Pay Now</>
           )}
         </button>
 

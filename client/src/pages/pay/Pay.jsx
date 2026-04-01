@@ -1,3 +1,4 @@
+// ── Pay.jsx — Orbitto Dark Premium ──
 import React, { useEffect, useState, useRef } from "react";
 import "./Pay.scss";
 import { loadStripe } from "@stripe/stripe-js";
@@ -25,15 +26,12 @@ const Pay = () => {
         setClientSecret(res.data.clientSecret);
       } catch (err) {
         const msg = err?.response?.data?.message;
-
-        // ── Self-payment guard — redirect back with a clear message ──
         if (err?.response?.status === 403) {
           navigate(`/gig/${id}`, {
-            state: { error: msg || "You cannot purchase your own gig." },
+            state: { error: msg || "You cannot purchase your own service." },
           });
           return;
         }
-
         setError(msg || "Failed to initialize payment. Please try again.");
       }
     };
@@ -47,11 +45,12 @@ const Pay = () => {
   return (
     <div className="pay">
       <div className="pay-inner">
+
         {/* ── Header ── */}
         <div className="pay-header">
           <div className="pay-logo-row">
             <div className="pay-logo-dot" />
-            <span>CampusConnect</span>
+            <span>Orbitto</span>
           </div>
           <h1>Complete Your Order</h1>
           <p>Your payment is encrypted and secure</p>

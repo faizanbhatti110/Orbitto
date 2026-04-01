@@ -1,67 +1,68 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;600;700&display=swap');
+// ── Reviews.scss — Orbitto Dark Premium ──
 
 .reviews {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 16px;
 
-  &>h2 {
-    font-family: "DM Serif Display", serif;
-    font-size: 22px;
-    font-weight: 400;
-    color: #1a2a1a;
+  > h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: 20px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    color: var(--orb-text);
     margin: 0;
-    padding-bottom: 12px;
-    border-bottom: 2px solid #eef2ee;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--orb-border);
   }
 
   hr {
     height: 0;
     border: none;
-    border-top: 1px solid #f0f4f0;
+    border-top: 1px solid var(--orb-border);
     margin: 4px 0;
   }
 
-  /* ── State messages ── */
+  // ── State messages ──
   .reviews-loading,
   .reviews-empty {
     font-size: 14px;
-    color: #999;
-    padding: 20px 0;
+    color: var(--orb-muted);
+    padding: 24px 0;
     text-align: center;
     font-style: italic;
   }
 
   .reviews-error {
     font-size: 14px;
-    color: #dc2626;
+    color: #fca5a5;
     padding: 12px 0;
   }
 
-  /* ── Add a review box ── */
+  // ── Add a review box ──
   .add {
-    background: linear-gradient(135deg, #f6fcf2 0%, #fff 100%);
-    border: 1.5px solid #c8e6a8;
-    border-radius: 16px;
+    background: rgba(124, 58, 237, 0.04);
+    border: 1px solid rgba(124, 58, 237, 0.2);
+    border-radius: 18px;
     padding: 24px;
     display: flex;
     flex-direction: column;
     gap: 16px;
-    box-shadow: 0 2px 12px rgba(70, 169, 31, 0.06);
+    margin-top: 8px;
 
     h3 {
-      font-family: "DM Serif Display", serif;
-      font-size: 17px;
-      font-weight: 400;
-      color: #1a2a1a;
+      font-family: 'Syne', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--orb-text);
       margin: 0;
     }
 
     .add-blocked {
       font-size: 14px;
-      color: #888;
-      background: #f4f4f4;
-      border: 1px solid #e0e0e0;
+      color: var(--orb-muted);
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--orb-border);
       border-radius: 10px;
       padding: 14px 16px;
       margin: 0;
@@ -70,20 +71,23 @@
 
     .add-error {
       font-size: 13px;
-      color: #dc2626;
-      background: #fff5f5;
-      border: 1px solid #fecaca;
-      border-radius: 8px;
+      color: #fca5a5;
+      background: rgba(248, 113, 113, 0.08);
+      border: 1px solid rgba(248, 113, 113, 0.2);
+      border-radius: 10px;
       padding: 10px 14px;
       margin: 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
 
     .add-success {
       font-size: 13px;
-      color: #16a34a;
-      background: #f0fae8;
-      border: 1px solid #bbf7d0;
-      border-radius: 8px;
+      color: #6ee7b7;
+      background: rgba(52, 211, 153, 0.08);
+      border: 1px solid rgba(52, 211, 153, 0.2);
+      border-radius: 10px;
       padding: 10px 14px;
       margin: 0;
       font-weight: 600;
@@ -94,90 +98,94 @@
       flex-direction: column;
       gap: 14px;
 
-      /* Textarea */
+      // Textarea
       textarea {
         width: 100%;
         box-sizing: border-box;
         padding: 14px 16px;
         font-size: 14px;
         line-height: 1.6;
-        border: 1.5px solid #d4edbb;
-        border-radius: 10px;
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid var(--orb-border);
+        border-radius: 12px;
         outline: none;
-        font-family: "DM Sans", "Montserrat", sans-serif;
-        background: #fff;
-        color: #1a2a1a;
+        font-family: 'DM Sans', sans-serif;
+        color: var(--orb-text);
         resize: vertical;
         min-height: 110px;
-        transition: border-color 0.2s, box-shadow 0.2s;
+        transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
 
         &:focus {
-          border-color: #46a91f;
-          box-shadow: 0 0 0 3px rgba(70, 169, 31, 0.1);
+          border-color: var(--orb-purple);
+          background: rgba(124, 58, 237, 0.06);
+          box-shadow: 0 0 0 3px var(--orb-purple-glow);
         }
 
         &::placeholder {
-          color: #bbb;
+          color: var(--orb-muted);
         }
       }
 
-      /* Rating row — label + stars select side by side */
+      // Rating row
       .rating-row {
         display: flex;
         align-items: center;
         gap: 12px;
 
         p {
-          font-size: 13px;
-          font-weight: 600;
-          color: #555;
+          font-size: 12px;
+          font-weight: 700;
+          color: var(--orb-muted);
           margin: 0;
           white-space: nowrap;
           text-transform: uppercase;
-          letter-spacing: 0.4px;
+          letter-spacing: 0.5px;
         }
 
         select {
           padding: 9px 14px;
           font-size: 14px;
-          border: 1.5px solid #d4edbb;
-          border-radius: 8px;
+          background: rgba(255, 255, 255, 0.04);
+          border: 1px solid var(--orb-border);
+          border-radius: 10px;
           outline: none;
-          background: #fff;
-          font-family: "DM Sans", "Montserrat", sans-serif;
-          color: #333;
+          font-family: 'DM Sans', sans-serif;
+          color: var(--orb-text);
           cursor: pointer;
           transition: border-color 0.2s, box-shadow 0.2s;
 
+          option {
+            background: #1a1a2e;
+            color: var(--orb-text);
+          }
+
           &:focus {
-            border-color: #46a91f;
-            box-shadow: 0 0 0 3px rgba(70, 169, 31, 0.1);
+            border-color: var(--orb-purple);
+            box-shadow: 0 0 0 3px var(--orb-purple-glow);
           }
         }
       }
 
-      /* Submit row */
+      // Submit row
       .form-actions {
         display: flex;
         justify-content: flex-end;
 
         button {
-          padding: 11px 32px;
-          background: #46a91f;
-          color: #fff;
+          padding: 12px 32px;
+          background: linear-gradient(135deg, var(--orb-purple), var(--orb-purple-light));
+          color: white;
           font-size: 14px;
-          font-weight: 600;
+          font-weight: 700;
           border: none;
-          border-radius: 10px;
+          border-radius: 50px;
           cursor: pointer;
-          font-family: "DM Sans", "Montserrat", sans-serif;
-          transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
-          box-shadow: 0 2px 8px rgba(70, 169, 31, 0.25);
+          font-family: 'DM Sans', sans-serif;
+          transition: transform 0.2s, box-shadow 0.2s, opacity 0.2s;
 
           &:hover:not(:disabled) {
-            background: #3c921c;
             transform: translateY(-2px);
-            box-shadow: 0 4px 14px rgba(70, 169, 31, 0.3);
+            box-shadow: 0 8px 24px var(--orb-purple-glow);
           }
 
           &:active {
@@ -185,10 +193,10 @@
           }
 
           &:disabled {
-            background: #a8d48a;
+            opacity: 0.45;
             cursor: not-allowed;
-            box-shadow: none;
             transform: none;
+            box-shadow: none;
           }
         }
       }

@@ -1,3 +1,4 @@
+// ── GigCard.jsx ──
 import React from "react";
 import "./GigCard.scss";
 import { Link } from "react-router-dom";

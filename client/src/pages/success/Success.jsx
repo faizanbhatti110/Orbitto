@@ -1,6 +1,8 @@
+// ── Success.jsx — Orbitto Dark Premium ──
 import React, { useEffect, useRef, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import newRequest from "../../utils/newRequest";
+import "./Success.scss";
 
 const Success = () => {
   const { search } = useLocation();
@@ -16,9 +18,6 @@ const Success = () => {
     if (hasCalled.current) return;
     hasCalled.current = true;
 
-    console.log("Success page - payment_intent:", payment_intent);
-    console.log("Success page - redirect_status:", redirect_status);
-
     if (redirect_status !== "succeeded") {
       setError(`Payment status: ${redirect_status}. Order not confirmed.`);
       return;
@@ -31,14 +30,11 @@ const Success = () => {
 
     const makeRequest = async () => {
       try {
-        const res = await newRequest.put("/orders", { payment_intent });
-        console.log("confirmOrder response:", res.data);
-        // Clear the URL params so stale intent can't be reused on back-navigation
+        await newRequest.put("/orders", { payment_intent });
         window.history.replaceState({}, document.title, "/success");
-        setTimeout(() => navigate("/orders"), 3000);
+        setTimeout(() => navigate("/orders"), 3500);
       } catch (err) {
-        console.error("confirmOrder failed:", err.response?.status, err.response?.data || err.message);
-        setError(err.response?.data || "Failed to confirm order. Check console.");
+        setError(err.response?.data || "Failed to confirm order. Please check your orders page.");
       }
     };
 
@@ -46,22 +42,26 @@ const Success = () => {
   }, []);
 
   return (
-    <div style={{ padding: "40px", textAlign: "center", fontFamily: "Montserrat, sans-serif" }}>
+    <div className="success">
       {error ? (
-        <>
-          <h2 style={{ color: "#e53e3e" }}>Order Confirmation Issue</h2>
-          <p style={{ color: "#666" }}>{String(error)}</p>
-          <p style={{ color: "#999", fontSize: "13px" }}>
+        <div className="success-card success-card--error">
+          <div className="success-icon">⚠️</div>
+          <h2>Order Confirmation Issue</h2>
+          <p>{String(error)}</p>
+          <p className="success-note">
             Your payment may have gone through. Check your orders page or contact support.
           </p>
-          <a href="/orders" style={{ color: "#46a91f", fontWeight: 600 }}>Go to Orders</a>
-        </>
+          <a href="/orders" className="success-btn">Go to Orders</a>
+        </div>
       ) : (
-        <>
-          <h2 style={{ color: "#46a91f" }}>Payment Successful!</h2>
-          <p>Confirming your order… You will be redirected shortly.</p>
-          <p style={{ color: "#999", fontSize: "13px" }}>Please do not close this page.</p>
-        </>
+        <div className="success-card">
+          <div className="success-glow" />
+          <div className="success-icon">✓</div>
+          <h2>Payment Successful!</h2>
+          <p>Confirming your order… you'll be redirected shortly.</p>
+          <p className="success-note">Please do not close this page.</p>
+          <div className="success-spinner" />
+        </div>
       )}
     </div>
   );
